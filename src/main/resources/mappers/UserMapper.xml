@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="controlcenterversiontwopackage.mapper.UserMapper">
+    <select id="findAll" resultType="controlcenterversiontwopackage.model.User">
+        SELECT * FROM user;
+    </select>
+    <select id="getUserById" parameterType="long" resultType="controlcenterversiontwopackage.model.User">
+        SELECT * FROM user WHERE id = #{id};
+    </select>
+    <insert id="insertUser" parameterType="controlcenterversiontwopackage.model.User">
+        INSERT INTO user(name, salary) VALUES (#{name}, #{salary});
+    </insert>
+    <insert id="insertUserBatch" parameterType="java.util.List">
+        INSERT INTO user(name, salary) VALUES
+        <foreach collection="list" item="user" separator=",">
+            (#{user.name}, #{user.salary})
+        </foreach>
+    </insert>
+</mapper>
